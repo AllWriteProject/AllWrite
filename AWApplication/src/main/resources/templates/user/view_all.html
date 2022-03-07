@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Notes</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<style type="text/css"></style>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<h3 class="text-center">All Users Entries</h3>
+			 <div th:if="${session.msg}"
+				 class="text-center"
+				role="alert">
+
+				<h4 th:text="${session.msg}"></h4>
+				<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+			</div> 
+			<center>
+
+			<div class="col-md-6 mt-3 ml-3" th:each="n:${Entry}">
+				<div class="card paint-card">
+					<div class="card-body">
+						<div class="text-center">
+							<img alt="" th:src="@{https://cdn.notonthehighstreet.com/fs/c1/d8/1568-61eb-47af-9451-84c1ed392e2d/normal_dream-it-foiled-hardback-diary-and-planner.jpg}"
+								style="width: 50px; height: 50px;">
+						</div>
+						<h6>Name: Anonymous</h6>
+
+						<h6>[[${n.title}]]</h6>
+						<p>
+							[[${n.content}]] <br> <br>
+						</p>
+					</div>
+				</div>
+			</div>
+			</center>
+
+
+
+
+			<div class="row p-4">
+				<div class="col-md-4">Total Elements : [[${totalElement}]]</div>
+				<div class="col-md-6">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							
+							<li th:classappend="${pageNo==0} ? 'disabled':'' " class="page-item">
+							<a class="page-link" th:href="@{'/user/viewall/'+${pageNo-1} }"
+							
+								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							</a>
+							
+							</li>
+							
+							
+							<li th:each="i:${#numbers.sequence(1,totalPage)}" th:classappend="${pageNo+1==i}?'active':''" class="page-item">
+							
+							<a th:href="@{'/user/viewall/' +${i-1} }" class="page-link" href="#">[[${i}]]</a>
+							
+							</li>
+							
+							<li th:classapppend="${pageNo+1==totalPage} ? 'disabled' :  '' " class="page-item">
+							<a class="page-link" th:href="@{'/user/viewall/'+${pageNo+1}}"
+								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+							</a>
+							</li>
+							
+						</ul>
+					</nav>
+				</div>
+			</div>
+
+
+
+
+
+		</div>
+
+	</section>
+</body>
+</html>

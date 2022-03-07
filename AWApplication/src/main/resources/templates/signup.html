@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sign up</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<style>
+.backimg {
+	background: url("https://healthjade.net/wp-content/uploads/2020/01/writers-cramp.jpg");
+	height:300%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
+</style>
+
+<script type="text/javascript">
+
+	input[type=number]::-webkit-inner-spin-button;
+    input[type=number]::-webkit-outer-spin-button
+    {
+	-webkit-appearance: none;
+	margin: 0;
+    }
+    </script>
+
+</head>
+<body>
+	<section class="backimg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3 margin ">
+					<div class="card mt-2 paint-card">
+						<h1 class="text-center">Register Here</h1>
+
+						<!--alert message  -->
+						 <div th:if="${session.msg}"
+							class="text-center">
+
+							<h4 class="text-success" th:text="${session.msg}"></h4>
+							<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+						</div> 
+
+						<!--alert message  -->
+
+						<div class="card-body">
+						
+							<form th:action="@{/saveUser}" method="post" name="form" onsubmit="return phonenumber(phonenumber)">
+
+
+
+								<div class="form-group mt-2">
+									<label>Enter Name</label><input type="text" name="name"
+										class="form-control" required="required">
+									
+										</div>
+										
+
+								<div class="form-group mt-2">
+									<label>Enter Email</label> <input type="email"
+										name="email" class="form-control" required="required">
+								</div>
+								
+								<div class="form-group mt-2">
+									<label>Enter Phonenumber</label> <input type="text"
+										name="phonenumber" id="phonenumber" class="form-control" required="required"  minlength="10" maxlength="10" onkeypress='return event.charCode>=48 &&event.charCode<=57'>
+								</div>
+								
+								<div class="form-group mt-2">
+									<label>Enter Password</label> <input type="password"
+										name="password" class="form-control" required="required" minlength="8" maxlength="12">
+								</div>
+								
+								
+								<div class="form-group mt-2">
+									<label>Enter Gender</label> &nbsp;  &nbsp; &nbsp; &nbsp;&nbsp;
+										<input type="radio" name="gender" value="Male" required="required" >Male &nbsp;  &nbsp;
+										<input type="radio" name="gender" value="Female" required="required" >Female
+										
+								</div>
+
+								<div class="form-group mt-2">
+									<textarea rows="3" cols="" class="form-control" name="about"
+										placeholder="Enter About"></textarea>
+								</div>
+								
+
+
+								<div class="text-center mt-3">
+									<button class="btn bg-primary text-white" type="submit">Submit</button>
+									<button type="reset" class="btn btn-primary text-white">Reset</button>
+								</div>
+
+
+
+
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
